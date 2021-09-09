@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+ - name: gravityformTables
+   database: dataraw
+   schema: gravityForms
+
+   tables:
+    - name: 12ridgesresidences
+    - name: frontlightatoldfield
+    - name: liveatbelfair
+    - name: livecarnescrossroads_form1
+    - name: livecarnescrossroads_form2
+    - name: mountainairclub
+    - name: realestateforsalewaxhawnc
+    - name: villageattamarack_form2
+    - name: villageattamarack_form3
