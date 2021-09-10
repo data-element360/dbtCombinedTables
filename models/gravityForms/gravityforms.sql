@@ -1,9 +1,31 @@
-/* 12ridgesresidences */
 
-SELECT '12ridgesresidences' AS form_name, First_Name, Last_Name, Email, Phone, date_created, date_updated, NULL AS gaClientId, NULL AS GCLID 
-FROM {{source('gravityformTables','12ridgesresidences')}}
+{% set gfAccounts = ["12ridgesresidences", "frontlightatoldfield"] %}
 
-UNION ALL
+WITH gravityForms AS (
+
+{% for gfAccount in gfAccounts %}
+
+SELECT * FROM  {{ref(gfAccount)}}
+
+{{"UNION ALL" if not loop.last }}
+
+{%- endfor %}
+
+)
+
+SELECT CAST(First_Name as string) AS First_Name
 
 
-/* 12ridgesresidences */
+FROM gravityForms
+
+
+
+
+
+
+
+
+
+
+
+
