@@ -35,4 +35,10 @@ models:
   transformTables:
       # Applies to all files under models/gravityForms/
       gravityForms:
-          materialized: table
+            materialized: table
+            
+            gravityformSQL:
+                materialized: ephemeral
+                +schema: testSchema
+          
+
