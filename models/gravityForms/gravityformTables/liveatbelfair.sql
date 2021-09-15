@@ -10,5 +10,5 @@ SELECT
     date_created, 
     date_updated, 
     gaClientId AS gaClientId, 
-    NULL AS GCLID 
+    CAST(NULL AS string) AS GCLID 
 FROM {{source('gravityformTables','liveatbelfair')}}

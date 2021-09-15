@@ -37,8 +37,8 @@ models:
       gravityForms:
             materialized: table
             
-            gravityformSQL:
+            gravityformTables:
                 materialized: ephemeral
-                +schema: testSchema
+                
           
 
