@@ -1,4 +1,4 @@
-
+-- List of dbt references to be joined
 {% 
 
 set gfAccounts = [
@@ -12,8 +12,8 @@ set gfAccounts = [
 
 
 --*********************************************************************************************************
-
-WITH gravityForms AS (
+-- Create joined table named gravityForms
+WITH gravityFormsCompile AS (
 
 {% for gfAccount in gfAccounts %}
 
@@ -24,9 +24,10 @@ SELECT * FROM  {{ref(gfAccount)}}
 {%- endfor %}
 
 
-)
+),
 --*********************************************************************************************************
-
+--Cast columns as appropriate data type
+gravityFormsCast AS (
 
 SELECT
     CAST(form_name as string) AS Form_Name,
@@ -41,56 +42,102 @@ SELECT
     CAST(GCLID as string) AS GCLID
 
 
-FROM gravityForms 
+FROM gravityFormsCompile 
+),
 
-WHERE
+--*********************************************************************************************************
+-- Filter table to eliminate 'test' entries  (will create series of sub-queries to filter out bogus records so that
+-- longer queries do not have to make multiple passes through the whole table)
 
--- REGEXP_CONTAINS(Home_Description,r'^test$')
--- OR
-NOT CONTAINS_SUBSTR(First_Name,'test') 
---OR
---CONTAINS_SUBSTR(Last_Name,'test')
-/*OR
+gravityFormsFilterTest AS (
 
-REGEXP_CONTAINS(Home_Description,r'^testing$') is False
+SELECT * FROM gravityFormsCompile  WHERE
 
-OR
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r' test ') 
+ AND
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r'^test ')
+ AND
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r'^test')
+ AND
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r' test')
+ AND
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r' testing ') 
+ AND
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r'^testing ')
+ AND
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r'^testing')
+ AND
+ NOT REGEXP_CONTAINS(LOWER(Home_Description),r' testing')
+ AND 
+ NOT REGEXP_CONTAINS(Email,r'^test$')
+ AND
+ NOT LOWER(First_Name) IN ('test', 'testing','first') 
+ AND
+ NOT LOWER(Last_Name) IN ('test', 'testing','last')
+ AND 
+ NOT Email IN ('kirsten@element-360.com','amanda@element-360.com','bowman@element-360.com','ryan@element-360.com','researchbasedrealestate@gmail.com',
+                'researchbasedrealestate@gmail.com','element@360.com','nope.noperson12@gmail.com','geryamin2020@gmail.com')
+	
+),
 
-Email <> 'kirsten@element-360.com'
 
 
-OR
+--*********************************************************************************************************
+-- Filter table to eliminate entries with spam words
 
-{% 
+gravityFormsFilterSpam AS (
 
+SELECT * FROM gravityFormsFilterTest WHERE
+
+{%
 set spamWords = [
     "cialis",                   "viagra",                   "porn",
     "nude",                     "Federal",                  "invoice",
-    "TalkWithCustomer"                                 
+    "http",                     ".com",                     "TalkWithCustomer",
+    "website",                  "generate",                 "whatsapp",
+    ".online",                  "clearance",                "earn$",
+    "Earn extra cash",          "Make $",                   "Income from home",
+    "Call now",                 "Act Now",                  "Vicodin", 
+    "Xanax",                    "Valium",                   "Weight Loss",
+    "Search Engine",            "customers",                "partnership",
+    "Ray-Ban",                  "optimized",                "bitcoin",
+    "altcoin"              
 
     ] 
         
 %}
+
+{% for word in spamWords %}
+
+NOT CONTAINS_SUBSTR(Home_Description,"{{word}}")
+
+{{"AND" if not loop.last }}
+
+{%- endfor %}
+),
+
+--*********************************************************************************************************
+-- Filter table to eliminate entries with cryllic alphabet
+
+gravityFormsFilterCryllic AS (
+
+SELECT * FROM gravityFormsFilterSpam WHERE
 
 {% set cryllicAlpha = ['Б','Г','Д','Ё','Ж','И','Й','Л','б','г','д','ё','ж','и','й','л','П','Ф','Ц','Ч','Ш','Щ'] %}
 
 {% for cryllic in cryllicAlpha %}
 
 NOT CONTAINS_SUBSTR(Home_Description,"{{cryllic}}")
-OR
+
+{{"AND" if not loop.last }}
 
 {%- endfor %}
+)
 
 
 
+SELECT * FROM gravityFormsFilterCryllic
 
-{% for word in spamWords %}
-
-NOT CONTAINS_SUBSTR(Home_Description,"{{word}}")
-
-{{"OR" if not loop.last }}
-
-{%- endfor %}  */
 
 
 
