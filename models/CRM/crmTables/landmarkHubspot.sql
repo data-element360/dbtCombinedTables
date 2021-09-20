@@ -1,3 +1,9 @@
+
+
+--***************************************************************************
+-- Find latest Contact Table
+
+
 {%  set getLatestContactTable_query %}
 
     Select table_id, creation_time  FROM dataraw.hubspotLandmark.__TABLES__
@@ -23,4 +29,33 @@
 {% set results_list = [] %}
 {% endif %}
 
-SELECT * FROM dataraw.hubspotLandmark.{{results_list}}
+
+With hubspotContacts As (
+SELECT 
+    firstname As First_Name,
+    lastname As Last_Name,
+    email AS Email,
+    createdate AS Created_Date,
+    ga_client_id AS GCLID,
+    lastmodifieddate AS Last_Modified_Date,
+    lead_source As Lead_Source,
+    lifecyclestage AS Stage,
+    CAST(hubspot_owner_id as int) AS Owner_Id,
+    contact_type As Contact_Type,
+    phone As Phone,
+    hs_created_by_user_id AS Created_By_Id
+ FROM `dataraw.hubspotLandmark.{{results_list}}`
+),
+
+hubspotOwners AS (
+    SELECT 	
+        Concat(firstName," ",lastName) AS User__Name,
+        CAST(userId AS int) AS userId
+     FROM dataraw.hubspotLandmark.landmark_owners
+     ORDER BY queryRunTime
+)
+
+
+
+
+
