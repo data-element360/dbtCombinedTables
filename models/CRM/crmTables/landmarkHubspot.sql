@@ -47,13 +47,7 @@ SELECT
  FROM `dataraw.hubspotLandmark.{{results_list}}`
 ),
 
-hubspotOwners AS (
-    SELECT 	
-        Concat(firstName," ",lastName) AS User__Name,
-        CAST(userId AS int) AS userId
-     FROM dataraw.hubspotLandmark.landmark_owners
-     ORDER BY queryRunTime
-)
+
 
 
 
