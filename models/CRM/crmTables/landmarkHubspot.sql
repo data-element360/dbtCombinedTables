@@ -86,11 +86,9 @@ SELECT
     amount As Amount,
     hs_createdate AS Deal_Created_Date,
     hs_deal_stage_probability AS Deal_Probability,
-    CONCAT(closed_lost_reason, closed_won_reason) AS Deal_Closed_Reason,
-    CONCAT(hs_date_entered_closedlost, hs_date_entered_closedwon) AS Deal_Closed_Date,
+    COALESCE(closed_lost_reason, closed_won_reason) AS Deal_Closed_Reason,
+    COALESCE(hs_date_entered_closedlost, hs_date_entered_closedwon) AS Deal_Closed_Date,
     hs_object_id AS dealId,
-    closed_lost_reason,
-    closed_won_reason
 FROM `dataraw.hubspotLandmark.{{deal_table}}`
 
 ),
