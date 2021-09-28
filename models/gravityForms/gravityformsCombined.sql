@@ -4,7 +4,8 @@
 set gfAccounts = [
     "12ridgesresidences",               "frontlightatoldfield",                 "liveatbelfair",
     "livecarnescrossroads_form1",       "livecarnescrossroads_form2",           "mountainairclub",
-    "realestateforsalewaxhawnc",        "villageattamarack_form2",              "villageattamarack_form3"
+    "realestateforsalewaxhawnc",        "villageattamarack_form2",              "villageattamarack_form3",
+    "liveatlandmarkwhitefish_form1"
     ] 
         
 %}
@@ -35,7 +36,7 @@ SELECT
     CAST(Last_Name as string) AS Last_Name,
     CAST(Email as string) AS Email,
     CAST(Phone as string) AS Phone,
-    CAST(Home_Description as string) AS Home_Description,
+    COALESCE(Home_Description, '') AS Home_Description,
     CAST(date_created as DATETIME) AS date_created,
     SAFE_CAST(date_updated as DATETIME) AS date_updated, -- If never updated then value = "None"
     SAFE_CAST(gaClientId as FLOAT64) AS gaClientId, -- Several forms have records which contain "gaClientId" as the value for this field
@@ -51,7 +52,7 @@ FROM gravityFormsCompile
 
 gravityFormsFilterTest AS (
 
-SELECT * FROM gravityFormsCompile  WHERE
+SELECT * FROM gravityFormsCast  WHERE
 
  NOT REGEXP_CONTAINS(LOWER(Home_Description),r' test ') 
  AND
@@ -66,7 +67,7 @@ SELECT * FROM gravityFormsCompile  WHERE
  NOT REGEXP_CONTAINS(LOWER(Home_Description),r'^testing ')
  AND
  NOT REGEXP_CONTAINS(LOWER(Home_Description),r'^testing')
- AND
+ AND 
  NOT REGEXP_CONTAINS(LOWER(Home_Description),r' testing')
  AND 
  NOT REGEXP_CONTAINS(Email,r'^test$')
@@ -76,7 +77,8 @@ SELECT * FROM gravityFormsCompile  WHERE
  NOT LOWER(Last_Name) IN ('test', 'testing','last')
  AND 
  NOT Email IN ('kirsten@element-360.com','amanda@element-360.com','bowman@element-360.com','ryan@element-360.com','researchbasedrealestate@gmail.com',
-                'researchbasedrealestate@gmail.com','element@360.com','nope.noperson12@gmail.com','geryamin2020@gmail.com')
+                'researchbasedrealestate@gmail.com','element@360.com','nope.noperson12@gmail.com','geryamin2020@gmail.com','')
+
 	
 ),
 
@@ -121,7 +123,7 @@ NOT CONTAINS_SUBSTR(Home_Description,"{{word}}")
 
 gravityFormsFilterCryllic AS (
 
-SELECT * FROM gravityFormsFilterSpam WHERE
+SELECT * FROM gravityFormsFilterSpam WHERE  
 
 {% set cryllicAlpha = ['Б','Г','Д','Ё','Ж','И','Й','Л','б','г','д','ё','ж','и','й','л','П','Ф','Ц','Ч','Ш','Щ'] %}
 
@@ -136,7 +138,7 @@ NOT CONTAINS_SUBSTR(Home_Description,"{{cryllic}}")
 
 
 
-SELECT * FROM gravityFormsFilterCryllic
+SELECT * FROM gravityFormsFilterCryllic 
 
 
 
