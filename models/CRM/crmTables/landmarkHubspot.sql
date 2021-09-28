@@ -88,7 +88,7 @@ SELECT
     hs_deal_stage_probability AS Deal_Probability,
     COALESCE(closed_lost_reason, closed_won_reason) AS Deal_Closed_Reason,
     COALESCE(hs_date_entered_closedlost, hs_date_entered_closedwon) AS Deal_Closed_Date,
-    hs_object_id AS dealId,
+    hs_object_id,
 FROM `dataraw.hubspotLandmark.{{deal_table}}`
 
 ),
@@ -107,7 +107,7 @@ ON hubspotContacts.contactId = associations.contactId
 
 SELECT * FROM contactUnionDealId 
 LEFT JOIN hubspotDeals ON
-contactUnionDealId.dealId = hubspotDeals.dealId
+contactUnionDealId.dealId = hubspotDeals.hs_object_id
 
 
 
