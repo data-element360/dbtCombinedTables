@@ -10,5 +10,9 @@ SELECT
     date_created, 
     date_updated, 
     gaClientId AS gaClientId, 
-    GCLID AS GCLID 
+    GCLID AS GCLID,
+    GA_Source AS UTM_Source,
+    GA_Medium AS UTM_Medium,
+    GA_Campaign AS UTM_Campaign,
+    GA_Content AS UTM_Content 
 FROM {{source('gravityformTables','realestateforsalewaxhawnc')}}

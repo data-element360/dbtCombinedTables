@@ -10,5 +10,9 @@ SELECT
     date_created, 
     date_updated, 
     gaClientId AS gaClientId, 
-    gclid AS GCLID 
+    gclid AS GCLID,
+    UTM_Source AS UTM_Source,
+    UTM_Medium AS UTM_Medium,
+    UTM_Campaign AS UTM_Campaign,
+    UTM_Content AS UTM_Content 
 FROM {{source('gravityformTables','livecarnescrossroads_form2')}}
