@@ -34,11 +34,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   transformTables:
       # Applies to all files under models/gravityForms/
-      gravityForms:
-            materialized: table
+    gravityForms:
+        materialized: table
             
-            gravityformTables:
-                materialized: ephemeral
+        gravityformTables:
+            materialized: ephemeral
+    googleAnalytics:
+            materialized: table
                 
           
 
