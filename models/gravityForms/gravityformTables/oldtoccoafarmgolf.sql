@@ -1,19 +1,19 @@
-/* villageattamarack_form3 */
+/* oldtoccoafarmgolf */
 
 SELECT 
-    'tamarack' AS client,
-    'villageattamarack_form3' AS form_name, 
+    'otf' AS client,
+    'oldtoccoafarmgolf' AS form_name, 
     First_Name, 
     Last_Name, 
     Email, 
     Phone, 
-    CAST(NULL AS string) AS Home_Description,
+    What_is_most_important_to_you_in_membership_ AS Home_Description,
     date_created, 
     date_updated, 
     gaClientId AS gaClientId, 
-    CAST(NULL AS string) AS GCLID,
+    gclid AS GCLID,
     UTM_Source AS UTM_Source,
     UTM_Medium AS UTM_Medium,
     UTM_Campaign AS UTM_Campaign,
     UTM_Content AS UTM_Content 
-FROM {{source('gravityformTables','villageattamarack_form3')}}
+FROM {{source('gravityformTables','oldtoccoafarmgolf')}}
