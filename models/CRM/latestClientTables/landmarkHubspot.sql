@@ -1,4 +1,4 @@
-
+--{{config(materialized="ephemeral")}}
 
 --***************************************************************************
 -- Find latest Contact Table
@@ -103,11 +103,13 @@ SELECT hubspotContacts.*, associations.dealId FROM hubspotContacts
 LEFT JOIN associations
 ON hubspotContacts.contactId = associations.contactId
 
-)
+),
 
-SELECT * FROM contactUnionDealId 
+allUnion AS (SELECT * FROM contactUnionDealId 
 LEFT JOIN hubspotDeals ON
-contactUnionDealId.dealId = hubspotDeals.hs_object_id
+contactUnionDealId.dealId = hubspotDeals.hs_object_id)
+
+SELECT "landmark" AS client, * EXCEPT(hs_object_id) FROM allUnion
 
 
 

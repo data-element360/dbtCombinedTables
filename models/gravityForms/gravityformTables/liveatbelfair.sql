@@ -1,6 +1,7 @@
 /* liveatbelfair */
 
 SELECT 
+    'belfair' AS client,
     'liveatbelfair' AS form_name, 
     First_Name, 
     Last_Name, 

@@ -5,7 +5,9 @@ set gfAccounts = [
     "12ridgesresidences",               "frontlightatoldfield",                 "liveatbelfair",
     "livecarnescrossroads_form1",       "livecarnescrossroads_form2",           "mountainairclub",
     "realestateforsalewaxhawnc",        "villageattamarack_form2",              "villageattamarack_form3",
-    "liveatlandmarkwhitefish_form1"
+    "liveatlandmarkwhitefish_form1",    "oldtoccoafarmdesign",                  "oldtoccoafarmgolf",
+    "oldtoccoafarmliving",              "taliskerdancingsun",                   "taliskere360",
+    "taliskermoondance",                "taliskermorningstar",                  "taliskerwhisperinghawk"       
     ] 
         
 %}
@@ -31,6 +33,7 @@ SELECT * FROM  {{ref(gfAccount)}}
 gravityFormsCast AS (
 
 SELECT
+    CAST(client as string) AS client,
     CAST(form_name as string) AS Form_Name,
     CAST(First_Name as string) AS First_Name,
     CAST(Last_Name as string) AS Last_Name,
