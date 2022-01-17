@@ -35,9 +35,9 @@ SELECT
     First_Name As First_Name,
     Last_Name As Last_Name,
     Primary_Email AS Email,
-    CAST(NULL as string) AS Contact_Created_Date,
+    EXTRACT(DATE FROM PARSE_DATETIME('%m/%d/%Y %H:%M %p',Date_of_Last_Activity)) AS Contact_Created_Date,
     gaClientId AS GCLID,
-    Date_of_Last_Activity AS Last_Modified_Date,
+    EXTRACT(DATE FROM PARSE_DATETIME('%m/%d/%Y %H:%M %p',Date_of_Last_Activity)) AS Last_Modified_Date,
     Lead_Source As Lead_Source,
     Prospect_Type As Contact_Type,
     Home_Phone As Phone,
@@ -53,6 +53,8 @@ SELECT
     CAST(NULL as string) AS Deal_Closed_Date,
       
 FROM `dataraw.otfClubEssentials.{{CRMtable}}`
+
+
 
 
 

@@ -48,6 +48,7 @@ models:
         
         latestClientTables:
             materialized: ephemeral
-                
+    allCombined:
+        materialized: table            
           
 

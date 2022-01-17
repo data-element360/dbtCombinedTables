@@ -35,9 +35,9 @@ SELECT
     firstname As First_Name,
     lastname As Last_Name,
     emailaddress AS Email,
-    createdate AS Contact_Created_Date,--y
+    EXTRACT(DATE FROM PARSE_DATETIME('%m/%d/%Y %H:%M:%S %p',createdate)) AS Contact_Created_Date,
     CAST(NULL as string) AS GCLID,
-    updatedate AS Last_Modified_Date,
+    EXTRACT(DATE FROM PARSE_DATETIME('%m/%d/%Y %H:%M:%S %p',updatedate)) AS Last_Modified_Date,
     CAST(NULL as string) As Lead_Source,
     contacttypeid As Contact_Type,
     CAST(NULL as string) As Phone,
