@@ -44,7 +44,7 @@ SELECT
     CAST(NULL as string) AS contactId,
     CAST(NULL as string) AS dealId,
     CAST(NULL as string) AS Deal_Name,
-    Funnel_Stage AS Stage_Original,
+    CONCAT(Funnel_Stage,' ',Opportunity_Status) AS Stage_Original,
     Membership_Interest AS Deal_Description,
     CAST(NULL as string) As Amount,
     CAST(NULL as string) AS Deal_Created_Date,
