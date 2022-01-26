@@ -36,7 +36,7 @@ set clientList = [        "otf",
                 Deal_Closed_Reason AS CRM_Deal_Closed_Reason
 
             FROM combinedTables.crmCombined
-            WHERE client = "{{client}}"
+            WHERE client = "{{client}}" AND Contact_Type NOT IN ('Broker/Agent') -- Prevents Agents in Landmark CRM from loading
         ),
 
         googleAnalytics AS (SELECT * EXCEPT(client) FROM combinedTables.googleanalyticsKPICombined WHERE client = "{{client}}"),
