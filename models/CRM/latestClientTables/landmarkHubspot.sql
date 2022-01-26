@@ -74,8 +74,8 @@ SELECT
     lead_source As Lead_Source,
     contact_type As Contact_Type,
     phone As Phone,
-    hs_object_id AS contactId
-FROM `dataraw.hubspotLandmark.{{contact_table}}`
+    hs_object_id AS contactId,
+    FROM `dataraw.hubspotLandmark.{{contact_table}}`
 ),
 hubspotDeals AS (
 

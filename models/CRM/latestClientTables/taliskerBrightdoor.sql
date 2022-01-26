@@ -52,5 +52,6 @@ SELECT
     CAST(NULL as string) AS Deal_Closed_Reason,
     CAST(NULL as string) AS Deal_Closed_Date,
     
+    
       
 FROM `dataraw.brightdoorTalisker.{{CRMtable}}`
