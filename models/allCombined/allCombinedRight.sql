@@ -42,8 +42,8 @@ set clientList = [        "otf",
         googleAnalytics AS (SELECT * EXCEPT(client) FROM combinedTables.googleanalyticsKPICombined WHERE client = "{{client}}"),
 
         gravityCRMCombined AS (SELECT * FROM gravityForm 
-        LEFT JOIN crm
-        ON gravityForm.Email = crm.CRM_Email),
+        RIGHT JOIN crm
+        ON crm.CRM_Email=gravityForm.Email), --gravityForm.Email = crm.CRM_Email
 
         gravityCRMGACombined AS (SELECT * FROM gravityCRMCombined LEFT JOIN googleAnalytics ON 
             SAFE_CAST(gravityCRMCombined.gaClientId AS FLOAT64) = SAFE_CAST(googleAnalytics.clientID AS FLOAT64))
