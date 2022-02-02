@@ -14,8 +14,39 @@ set clientList = [        "otf",
 
        (
         WITH gravityForm AS (
-            SELECT client AS Client, * EXCEPT(client) FROM combinedTables.gravityformsCombined 
-            WHERE client = "{{client}}"
+
+            -- The following is to eliminate duplicate Gravity Forms so that duplicate crm deals are not created. Basicall, we take the Gravity form with a 
+            -- GaClid and combine the data.
+            SELECT * FROM (
+
+                SELECT 
+                    MAX(client) AS Client,    
+                    MAX(Form_Name) AS GF_Form_Name,
+                    MAX(First_Name) AS GF_First_Name,
+                    MAX(Last_Name) AS GF_Last_Name,
+                    Email AS GF_Email,
+                    MAX(Home_Description) AS GF_Home_Description,
+                    MAX(date_created) AS GF_Date_Created,
+                    MAX(CASE WHEN gaSeqNum=1 THEN gaClientId END) as gaClientId,
+                FROM 
+                (
+                SELECT gaClientId,
+                client,
+                ROW_NUMBER() OVER (PARTITION BY Email ORDER BY MAX(gaClientId) DESC, gaClientId) AS gaSeqNum, 
+                Email,
+                Form_Name,
+                First_Name,
+                Last_Name,
+                Home_Description,
+                date_created
+                FROM `dataproduction.combinedTables.gravityformsCombined` WHERE client = "{{client}}"
+                GROUP BY gaClientId, Email, Form_Name,client,First_Name,Last_Name,Home_Description,date_created,Email
+
+                )
+
+            GROUP BY GF_Email)
+            
+
         ),
         crm AS (
             SELECT 
@@ -43,7 +74,7 @@ set clientList = [        "otf",
 
         gravityCRMCombined AS (SELECT * FROM gravityForm 
         RIGHT JOIN crm
-        ON crm.CRM_Email=gravityForm.Email), --gravityForm.Email = crm.CRM_Email
+        ON crm.CRM_Email=gravityForm.GF_Email), --gravityForm.Email = crm.CRM_Email
 
         gravityCRMGACombined AS (SELECT * FROM gravityCRMCombined LEFT JOIN googleAnalytics ON 
             SAFE_CAST(gravityCRMCombined.gaClientId AS FLOAT64) = SAFE_CAST(googleAnalytics.clientID AS FLOAT64))
@@ -56,7 +87,7 @@ set clientList = [        "otf",
     {%- endfor %}
     )
 
-    SELECT * FROM allCombined
+    SELECT * FROM allCombined WHERE Client IS NOT Null
     
 
 
