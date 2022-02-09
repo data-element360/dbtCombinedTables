@@ -7,7 +7,9 @@ set gfAccounts = [
     "realestateforsalewaxhawnc",        "villageattamarack_form2",              "villageattamarack_form3",
     "liveatlandmarkwhitefish_form1",    "oldtoccoafarmdesign",                  "oldtoccoafarmgolf",
     "oldtoccoafarmliving",              "taliskerdancingsun",                   "taliskere360",
-    "taliskermoondance",                "taliskermorningstar",                  "taliskerwhisperinghawk"       
+    "taliskermoondance",                "taliskermorningstar",                  "taliskerwhisperinghawk",
+    "ewpold",                           "ewpcapeonkiawah",                      "ewpgadsden"
+           
     ] 
         
 %}

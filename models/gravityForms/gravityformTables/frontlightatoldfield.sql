@@ -11,7 +11,7 @@ SELECT
     Phone__ AS Phone, 
     What_are_you_looking_for_in_your_next_home_ AS Home_Description,
     date_created, 
-    date_updated, 
+    date_updated,
     gaClientId AS gaClientId, 
     gclid AS GCLID,
     UTM_Source AS UTM_Source,
