@@ -2,7 +2,8 @@
 {% 
 
 set crmTables = [
-    "landmarkHubspot",              "otfClubEssentials",            "taliskerBrightdoor"
+    "landmarkHubspot",              "otfClubEssentials",            "taliskerBrightdoor",
+    "ewpSFDC"
 ]
        
 %}

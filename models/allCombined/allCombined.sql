@@ -1,7 +1,8 @@
 {% 
 set clientList = [        "otf",
                           "landmark",
-                          "talisker"      
+                          "talisker",
+                          "ewp"      
 
                 ]        
 %}   
