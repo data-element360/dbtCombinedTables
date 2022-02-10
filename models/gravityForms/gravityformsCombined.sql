@@ -8,7 +8,7 @@ set gfAccounts = [
     "liveatlandmarkwhitefish_form1",    "oldtoccoafarmdesign",                  "oldtoccoafarmgolf",
     "oldtoccoafarmliving",              "taliskerdancingsun",                   "taliskere360",
     "taliskermoondance",                "taliskermorningstar",                  "taliskerwhisperinghawk",
-    "ewpold",                           "ewpcapeonkiawah",                      "ewpgadsden"
+    "ewpwaterfront",                     "ewpcapeonkiawah",                      "ewpgadsden"
            
     ] 
         
