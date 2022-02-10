@@ -1,8 +1,8 @@
-/* ewp-old */
+/* ewpwaterfront */
 
 SELECT 
     'ewp' AS client,
-    'ewp-old' AS form_name, 
+    'ewpwaterfront' AS form_name, 
     First_Name AS First_Name, 
     Last_Name AS Last_Name, 
     Email AS Email, 
@@ -16,4 +16,4 @@ SELECT
     UTM_Medium,
     UTM_Campaign,
     UTM_Content 
-FROM {{source('gravityformTables','ewp-old')}}
+FROM {{source('gravityformTables','ewpwaterfront')}}
