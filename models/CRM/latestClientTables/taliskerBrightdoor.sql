@@ -39,7 +39,12 @@ SELECT
     CAST(NULL as string) AS GCLID,
     EXTRACT(DATE FROM PARSE_DATETIME('%m/%d/%Y %H:%M:%S %p',updatedate)) AS Last_Modified_Date,
     CAST(NULL as string) As Lead_Source,
-    contacttypeid As Contact_Type,
+    CASE 
+        WHEN contacttypeid = '' THEN 'NA'
+        WHEN contacttypeid IS NULL THEN 'NA'
+        ELSE contacttypeid
+        END AS Contact_Type,
+    --contacttypeid As Contact_Type,
     CAST(NULL as string) As Phone,
     contactid AS contactId,
     CAST(NULL as string) AS dealId,--n

@@ -72,7 +72,11 @@ SELECT
     ga_client_id AS GCLID,
     EXTRACT(DATE FROM PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%E*SZ', lastmodifieddate)) AS Last_Modified_Date,
     lead_source As Lead_Source,
-    contact_type As Contact_Type,
+    CASE 
+        WHEN contact_type IS NULL THEN 'NA'
+        ELSE contact_type
+        END AS Contact_Type,
+
     phone As Phone,
     hs_object_id AS contactId,
     FROM `dataraw.hubspotLandmark.{{contact_table}}`
@@ -110,6 +114,7 @@ LEFT JOIN hubspotDeals ON
 contactUnionDealId.dealId = hubspotDeals.hs_object_id)
 
 SELECT "landmark" AS client, * EXCEPT(hs_object_id) FROM allUnion
+
 
 
 
