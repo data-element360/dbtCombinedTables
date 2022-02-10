@@ -41,7 +41,7 @@ SELECT
     gaClientID__c AS GCLID,
     EXTRACT(DATE FROM PARSE_DATETIME('%Y-%m-%dT%H:%M:%S',LEFT(LastModifiedDate,LENGTH(LastModifiedDate)-9))) AS Last_Modified_Date,
     LeadSource As Lead_Source,
-    CAST(NULL as string) As Contact_Type,
+    'NA' As Contact_Type,
     Phone As Phone,
     Id AS contactId,
     CAST(NULL as string) AS dealId,--n

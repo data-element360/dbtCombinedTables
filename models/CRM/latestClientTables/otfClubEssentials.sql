@@ -39,7 +39,11 @@ SELECT
     gaClientId AS GCLID,
     EXTRACT(DATE FROM SAFE.PARSE_DATETIME('%m/%d/%Y %H:%M %p',Date_of_Last_Activity)) AS Last_Modified_Date,
     Lead_Source As Lead_Source,
-    Prospect_Type As Contact_Type,
+    CASE 
+        WHEN Prospect_Type = '' THEN 'NA'
+        ELSE Prospect_Type
+        END AS Contact_Type,
+    --Prospect_Type As Contact_Type,
     Home_Phone As Phone,
     CAST(NULL as string) AS contactId,
     CAST(NULL as string) AS dealId,
@@ -54,6 +58,8 @@ SELECT
     
       
 FROM `dataraw.otfClubEssentials.{{CRMtable}}`
+
+
 
 
 
