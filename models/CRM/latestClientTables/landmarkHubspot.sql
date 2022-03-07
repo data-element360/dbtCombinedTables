@@ -72,11 +72,7 @@ SELECT
     ga_client_id AS GCLID,
     EXTRACT(DATE FROM PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%E*SZ', lastmodifieddate)) AS Last_Modified_Date,
     lead_source As Lead_Source,
-    CASE 
-        WHEN contact_type IS NULL THEN 'NA'
-        ELSE contact_type
-        END AS Contact_Type,
-
+    contact_type As Contact_Type,
     phone As Phone,
     hs_object_id AS contactId,
     FROM `dataraw.hubspotLandmark.{{contact_table}}`
@@ -85,7 +81,7 @@ hubspotDeals AS (
 
 SELECT 
     dealname AS Deal_Name,
-    dealstage AS Stage_Original,
+    stageLabel AS Stage_Original,
     description AS Deal_Description,
     amount As Amount,
     CAST(hs_createdate AS STRING) AS Deal_Created_Date,
@@ -93,9 +89,21 @@ SELECT
     COALESCE(closed_lost_reason, closed_won_reason) AS Deal_Closed_Reason,
     COALESCE(hs_date_entered_closedlost, hs_date_entered_closedwon) AS Deal_Closed_Date,
     hs_object_id,
-FROM `dataraw.hubspotLandmark.{{deal_table}}`
+FROM (
+    (SELECT CONCAT(pipeline,dealstage) AS stageConcat, * FROM `dataraw.hubspotLandmark.{{deal_table}}`) Deals
+    LEFT JOIN 
+    (SELECT CONCAT(pipeline,stageId) AS stageConcat, * FROM `dataraw.hubspotLandmark.landmark_pipeline`) Pipeline
+    ON  Deals.stageConcat = Pipeline.stageConcat
+    
+    )
+
+
+
+--`dataraw.hubspotLandmark.{{deal_table}}`
 
 ),
+
+
 
 associations AS (
 SELECT * FROM `dataraw.hubspotLandmark.landmark_dealToContactAssociation`
@@ -114,7 +122,6 @@ LEFT JOIN hubspotDeals ON
 contactUnionDealId.dealId = hubspotDeals.hs_object_id)
 
 SELECT "landmark" AS client, * EXCEPT(hs_object_id) FROM allUnion
-
 
 
 
