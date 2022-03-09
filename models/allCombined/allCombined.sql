@@ -3,7 +3,7 @@ set clientList = [        "otf",
                           "landmark",
                           "talisker",
                           "ewp",
-                          "12ridges"      
+                          "12ridges"       
 
                 ]        
 %}   
