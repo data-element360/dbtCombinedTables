@@ -7,6 +7,7 @@ sources:
 
    tables:
     - name: 12ridgesresidences
+    - name: 12ridgesliving
     - name: frontlightatoldfield
     - name: liveatbelfair
     - name: livecarnescrossroads_form1
