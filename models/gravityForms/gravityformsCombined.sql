@@ -8,7 +8,8 @@ set gfAccounts = [
     "liveatlandmarkwhitefish_form1",    "oldtoccoafarmdesign",                  "oldtoccoafarmgolf",
     "oldtoccoafarmliving",              "taliskerdancingsun",                   "taliskere360",
     "taliskermoondance",                "taliskermorningstar",                  "taliskerwhisperinghawk",
-    "ewpwaterfront",                     "ewpcapeonkiawah",                      "ewpgadsden"
+    "ewpwaterfront",                     "ewpcapeonkiawah",                      "ewpgadsden",
+    "12ridgesliving"
            
     ] 
         
@@ -82,7 +83,8 @@ SELECT * FROM gravityFormsCast  WHERE
  NOT LOWER(Last_Name) IN ('test', 'testing','last')
  AND 
  NOT Email IN ('kirsten@element-360.com','amanda@element-360.com','bowman@element-360.com','ryan@element-360.com','researchbasedrealestate@gmail.com',
-                'researchbasedrealestate@gmail.com','element@360.com','nope.noperson12@gmail.com','geryamin2020@gmail.com','','wrbkelley46@gmail.com')
+                'researchbasedrealestate@gmail.com','element@360.com','nope.noperson12@gmail.com','geryamin2020@gmail.com','','wrbkelley46@gmail.com',
+                'bowman@element-360.com','ty@element-360.com')
 
 	
 ),

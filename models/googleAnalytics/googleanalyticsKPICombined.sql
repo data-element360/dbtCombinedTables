@@ -1,13 +1,14 @@
 {% 
 set gaDataSet = ["googleAnalyticsLandmark",             "googleAnalyticsOTF",               "googleAnalyticsTalisker",
 
-                "googleAnalyticsETW_capeonkiaw",        "googleAnalyticsETW_theGadsen",     "googleAnalyticsETW_waterfrontDanielIsland"
+                "googleAnalyticsETW_capeonkiaw",        "googleAnalyticsETW_theGadsen",     "googleAnalyticsETW_waterfrontDanielIsland",
+                "googleAnalytics12Ridges"
                 ]        
 %}
 
 
 {% 
-set gaClient = [ "landmark", "otf", "talisker","ewp","ewp","ewp" ]        
+set gaClient = [ "landmark", "otf", "talisker","ewp","ewp","ewp", "12ridges" ]        
 %}
 
 WITH combined AS (
