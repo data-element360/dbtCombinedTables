@@ -11,11 +11,11 @@
         (
         SELECT MAX(creation_time) AS maxContactCreate
         FROM dataraw.hubspot12Ridges.__TABLES__
-        WHERE CONTAINS_SUBSTR(table_id ,"12ridges_contacts")
+        WHERE CONTAINS_SUBSTR(table_id ,"12Ridges_contacts")
         )
 
     AND 
-        CONTAINS_SUBSTR(table_id ,"12ridges_contacts")
+        CONTAINS_SUBSTR(table_id ,"12Ridges_contacts")
 
 {% endset %}
 
@@ -39,11 +39,11 @@
         (
         SELECT MAX(creation_time) AS maxDealCreate
         FROM dataraw.hubspot12Ridges.__TABLES__
-        WHERE CONTAINS_SUBSTR(table_id ,"12ridges_deals")
+        WHERE CONTAINS_SUBSTR(table_id ,"12Ridges_deals")
         )
 
     AND 
-        CONTAINS_SUBSTR(table_id ,"12ridges_deals")
+        CONTAINS_SUBSTR(table_id ,"12Ridges_deals")
 
 {% endset %}
 
@@ -69,15 +69,10 @@ SELECT
     lastname As Last_Name,
     email AS Email,
     EXTRACT(DATE FROM PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%E*SZ', createdate)) AS Contact_Created_Date,
-    gaclientid AS GCLID,
+    CAST(NULL AS String) AS GCLID,
     EXTRACT(DATE FROM PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%E*SZ', lastmodifieddate)) AS Last_Modified_Date,
-    CAST(NULL as string) As Lead_Source,
-    'NA' AS contact_type,
-    /*CASE 
-        WHEN contact_type IS NULL THEN 'NA'
-        ELSE contact_type
-        END AS Contact_Type,*/
-
+    CAST(NULL AS String) As Lead_Source,
+    'NA' As Contact_Type,
     phone As Phone,
     hs_object_id AS contactId,
     FROM `dataraw.hubspot12Ridges.{{contact_table}}`
@@ -86,7 +81,7 @@ hubspotDeals AS (
 
 SELECT 
     dealname AS Deal_Name,
-    dealstage AS Stage_Original,
+    stageLabel AS Stage_Original,
     description AS Deal_Description,
     amount As Amount,
     CAST(hs_createdate AS STRING) AS Deal_Created_Date,
@@ -94,9 +89,21 @@ SELECT
     COALESCE(closed_lost_reason, closed_won_reason) AS Deal_Closed_Reason,
     COALESCE(hs_date_entered_closedlost, hs_date_entered_closedwon) AS Deal_Closed_Date,
     hs_object_id,
-FROM `dataraw.hubspot12Ridges.{{deal_table}}`
+FROM (
+    (SELECT CONCAT(pipeline,dealstage) AS stageConcat, * FROM `dataraw.hubspot12Ridges.{{deal_table}}`) Deals
+    LEFT JOIN 
+    (SELECT CONCAT(pipeline,stageId) AS stageConcat, * FROM `dataraw.hubspot12Ridges.12ridges_pipeline`) Pipeline
+    ON  Deals.stageConcat = Pipeline.stageConcat
+    
+    )
+
+
+
+--`dataraw.hubspot12ridges.{{deal_table}}`
 
 ),
+
+
 
 associations AS (
 SELECT * FROM `dataraw.hubspot12Ridges.12ridges_dealToContactAssociation`
