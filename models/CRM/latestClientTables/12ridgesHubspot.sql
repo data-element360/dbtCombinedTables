@@ -92,7 +92,7 @@ SELECT
 FROM (
     (SELECT CONCAT(pipeline,dealstage) AS stageConcat, * FROM `dataraw.hubspot12Ridges.{{deal_table}}`) Deals
     LEFT JOIN 
-    (SELECT CONCAT(pipeline,stageId) AS stageConcat, * FROM `dataraw.hubspot12Ridges.12ridges_pipeline`) Pipeline
+    (SELECT CONCAT(pipeline,stageId) AS stageConcat, * FROM `dataraw.hubspot12Ridges.12ridges_pipeline` WHERE pipelineLabel = '12 Ridges - New') Pipeline  
     ON  Deals.stageConcat = Pipeline.stageConcat
     
     )
@@ -122,3 +122,4 @@ LEFT JOIN hubspotDeals ON
 contactUnionDealId.dealId = hubspotDeals.hs_object_id)
 
 SELECT "12ridges" AS client, * EXCEPT(hs_object_id) FROM allUnion
+--SELECT Stage_Original, COUNT(Stage_Original) FROM allUnion Group By Stage_Original

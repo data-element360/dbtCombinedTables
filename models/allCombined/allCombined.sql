@@ -109,7 +109,10 @@ set clientList = [        "otf",
     {%- endfor %}
     )
 
-    SELECT * FROM allCombined WHERE Client IS NOT Null
+    --SELECT * FROM allCombined WHERE Client IS NOT Null
+
+    --SELECT CRM_Stage_Original, COUNT(CRM_Stage_Original) FROM allCombined WHERE Client = '12ridges' Group By CRM_Stage_Original
+    SELECT COUNT(*) FROM allCombined WHERE Client = '12ridges'
 
     
 
