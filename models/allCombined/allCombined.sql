@@ -3,7 +3,8 @@ set clientList = [        "otf",
                           "landmark",
                           "talisker",
                           "ewp",
-                          "12ridges"       
+                          "12ridges",
+                          "tamarack"       
 
                 ]        
 %}   
@@ -110,6 +111,7 @@ set clientList = [        "otf",
     )
 
     SELECT * FROM allCombined WHERE Client IS NOT Null
+    --SELECT DISTINCT(Client) FROM allCombined
 
   
 

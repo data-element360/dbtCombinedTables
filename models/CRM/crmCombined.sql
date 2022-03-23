@@ -3,7 +3,7 @@
 
 set crmTables = [
     "landmarkHubspot",              "otfClubEssentials",            "taliskerBrightdoor",
-    "ewpSFDC",                      "12ridgesHubspot"
+    "ewpSFDC",                      "12ridgesHubspot",              "tamarackLasso"
 ]
        
 %}
@@ -26,3 +26,5 @@ SELECT "{{crmTable}}" AS crmSystem, * FROM  {{ ref(crmTable) }}--dataproduction.
 )
 
 SELECT * FROM crmCompile
+
+

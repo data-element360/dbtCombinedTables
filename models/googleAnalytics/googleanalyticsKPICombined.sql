@@ -1,14 +1,13 @@
 {% 
 set gaDataSet = ["googleAnalyticsLandmark",             "googleAnalyticsOTF",               "googleAnalyticsTalisker",
-
                 "googleAnalyticsETW_capeonkiaw",        "googleAnalyticsETW_theGadsen",     "googleAnalyticsETW_waterfrontDanielIsland",
-                "googleAnalytics12Ridges"
+                "googleAnalytics12Ridges",              "googleAnalyticsTamarack"
                 ]        
 %}
 
 
 {% 
-set gaClient = [ "landmark", "otf", "talisker","ewp","ewp","ewp", "12ridges" ]        
+set gaClient = [ "landmark", "otf", "talisker","ewp","ewp","ewp", "12ridges", "tamarack" ]        
 %}
 
 WITH combined AS (
@@ -76,4 +75,4 @@ WITH combined AS (
 )
 
 
-SELECT * FROM combined
+SELECT * FROM combined 

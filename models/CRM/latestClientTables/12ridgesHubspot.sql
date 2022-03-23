@@ -122,4 +122,6 @@ LEFT JOIN hubspotDeals ON
 contactUnionDealId.dealId = hubspotDeals.hs_object_id)
 
 SELECT "12ridges" AS client, * EXCEPT(hs_object_id) FROM allUnion
---SELECT Stage_Original, COUNT(Stage_Original) FROM allUnion Group By Stage_Original
+--SELECT Stage_Original, COUNT(Stage_Original) FROM allUnion WHERE Stage_Original ='Introduction Completed' Group By Stage_Original
+--SELECT * FROM allUnion
+
