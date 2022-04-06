@@ -111,7 +111,7 @@ set clientList = [        "otf",
     )
 
     SELECT * FROM allCombined WHERE Client IS NOT Null
-    --SELECT DISTINCT(Client) FROM allCombined
+
 
   
 
