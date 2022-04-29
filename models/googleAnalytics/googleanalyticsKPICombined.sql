@@ -1,14 +1,20 @@
 {% 
-set gaDataSet = ["googleAnalyticsLandmark",             "googleAnalyticsOTF",               "googleAnalyticsTalisker",
-                "googleAnalyticsETW_capeonkiaw",        "googleAnalyticsETW_theGadsen",     "googleAnalyticsETW_waterfrontDanielIsland",
-                "googleAnalytics12Ridges",              "googleAnalyticsTamarack"
+set gaDataSet = [
+                "googleAnalyticsLandmark",                   "googleAnalyticsOTF",                          "googleAnalyticsTalisker",                      
+                "googleAnalyticsETW_capeonkiaw",             "googleAnalyticsETW_theGadsen",                "googleAnalyticsETW_waterfrontDanielIsland",    
+                "googleAnalytics12Ridges",                   "googleAnalyticsTamarack",                      "googleAnalyticsKiama"            
                 ]        
 %}
 
 
 {% 
-set gaClient = [ "landmark", "otf", "talisker","ewp","ewp","ewp", "12ridges", "tamarack" ]        
+set gaClient = [
+                "landmark",         "otf",          "talisker",         "ewp",          "ewp",          "ewp",
+                "12ridges",         "tamarack",     "kiama"                
+                ]        
 %}
+
+
 
 WITH combined AS (
 {% for i in gaDataSet %}
@@ -46,11 +52,11 @@ WITH combined AS (
         ROW_NUMBER()  OVER (PARTITION BY clientId ORDER BY COUNT(source) DESC, source) AS sourceSeqNum,
         ROW_NUMBER()  OVER (PARTITION BY clientId ORDER BY COUNT(channelGrouping) DESC, channelGrouping) AS channelSeqNum,
         ROW_NUMBER()  OVER (PARTITION BY clientId ORDER BY COUNT(region) DESC, channelGrouping) AS regionSeqNum,
-        SUM(SAFE_CAST(pageviews AS NUMERIC)) AS pageviews,
-        SUM(SAFE_CAST(sessionCount AS NUMERIC)) as sessionCount,
+        SUM(CAST(pageviews AS NUMERIC)) AS pageviews,
+        SUM(CAST(sessionCount AS NUMERIC)) as sessionCount,
         MAX(date) AS date,
-        SUM(SAFE_CAST(sessionDuration AS NUMERIC)) AS sessionDuration,
-        SUM(SAFE_CAST(avgSessionDuration AS NUMERIC)) AS avgSessionDuration,
+        SUM(CAST(sessionDuration AS NUMERIC)) AS sessionDuration,
+        SUM(CAST(avgSessionDuration AS NUMERIC)) AS avgSessionDuration,
         MAX(queryRuntime) as queryRunTime,
         campaign,
         keyword,
@@ -75,4 +81,4 @@ WITH combined AS (
 )
 
 
-SELECT * FROM combined 
+SELECT * FROM combined

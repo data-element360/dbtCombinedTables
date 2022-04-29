@@ -3,7 +3,8 @@
 
 set crmTables = [
     "landmarkHubspot",              "otfClubEssentials",            "taliskerBrightdoor",
-    "ewpSFDC",                      "12ridgesHubspot",              "tamarackLasso"
+    "ewpSFDC",                      "12ridgesHubspot",              "tamarackLasso",
+    "kiamaHubspot",                 "balsamSharpspring"
 ]
        
 %}
@@ -26,5 +27,6 @@ SELECT "{{crmTable}}" AS crmSystem, * FROM  {{ ref(crmTable) }}--dataproduction.
 )
 
 SELECT * FROM crmCompile
+--SELECT COUNT(*) FROM crmCompile WHERE client = 'balsam'
 
 
