@@ -9,7 +9,8 @@ set gfAccounts = [
     "oldtoccoafarmliving",              "taliskerdancingsun",                   "taliskere360",
     "taliskermoondance",                "taliskermorningstar",                  "taliskerwhisperinghawk",
     "ewpwaterfront",                     "ewpcapeonkiawah",                     "ewpgadsden",
-    "12ridgesliving",                   "homesattamarack",                      "kiamabahama"
+    "12ridgesliving",                   "homesattamarack",                      "kiamabahama",
+    "balsammountain"
            
     ] 
         
@@ -84,7 +85,7 @@ SELECT * FROM gravityFormsCast  WHERE
  AND 
  NOT Email IN ('kirsten@element-360.com','amanda@element-360.com','bowman@element-360.com','ryan@element-360.com','researchbasedrealestate@gmail.com',
                 'researchbasedrealestate@gmail.com','element@360.com','nope.noperson12@gmail.com','geryamin2020@gmail.com','','wrbkelley46@gmail.com',
-                'bowman@element-360.com','ty@element-360.com')
+                'bowman@element-360.com','ty@element-360.com','wrbkelley@gmail.com')
 
 	
 ),
@@ -145,7 +146,7 @@ NOT CONTAINS_SUBSTR(Home_Description,"{{cryllic}}")
 
 
 
-SELECT * FROM gravityFormsFilterCryllic 
+SELECT * FROM gravityFormsFilterCryllic WHERE client = 'balsam'
 
 
 

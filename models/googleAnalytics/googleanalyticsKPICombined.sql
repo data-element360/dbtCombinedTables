@@ -2,7 +2,8 @@
 set gaDataSet = [
                 "googleAnalyticsLandmark",                   "googleAnalyticsOTF",                          "googleAnalyticsTalisker",                      
                 "googleAnalyticsETW_capeonkiaw",             "googleAnalyticsETW_theGadsen",                "googleAnalyticsETW_waterfrontDanielIsland",    
-                "googleAnalytics12Ridges",                   "googleAnalyticsTamarack",                      "googleAnalyticsKiama"            
+                "googleAnalytics12Ridges",                   "googleAnalyticsTamarack",                      "googleAnalyticsKiama",
+                "googleAnalyticsBalsamMountain"      
                 ]        
 %}
 
@@ -10,7 +11,7 @@ set gaDataSet = [
 {% 
 set gaClient = [
                 "landmark",         "otf",          "talisker",         "ewp",          "ewp",          "ewp",
-                "12ridges",         "tamarack",     "kiama"                
+                "12ridges",         "tamarack",     "kiama",            "balsam"                
                 ]        
 %}
 
