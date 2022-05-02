@@ -10,7 +10,7 @@ set gfAccounts = [
     "taliskermoondance",                "taliskermorningstar",                  "taliskerwhisperinghawk",
     "ewpwaterfront",                     "ewpcapeonkiawah",                     "ewpgadsden",
     "12ridgesliving",                   "homesattamarack",                      "kiamabahama",
-    "balsammountain"
+    "balsammountain",                   "balsampreserveformvibe"                   
            
     ] 
         
@@ -146,7 +146,7 @@ NOT CONTAINS_SUBSTR(Home_Description,"{{cryllic}}")
 
 
 
-SELECT * FROM gravityFormsFilterCryllic WHERE client = 'balsam'
+SELECT * FROM gravityFormsFilterCryllic 
 
 
 
