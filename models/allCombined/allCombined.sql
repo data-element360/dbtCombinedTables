@@ -5,12 +5,13 @@ set clientList = [        "otf",
                           "ewp",
                           "12ridges",
                           "tamarack",
-                          "balsam",
-                          "kiama"       
+      
 
                 ]        
 %}   
 
+/*                          "balsam",
+                          "kiama" */
 
 
     WITH allCombined as(
