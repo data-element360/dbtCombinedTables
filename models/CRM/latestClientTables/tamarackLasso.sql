@@ -45,8 +45,8 @@ SELECT
     CAST(PersonalID AS String) AS contactId,
     CAST(NULL as string) AS dealId,
     CAST(NULL as string) AS Deal_Name,
-    /*Rating AS Stage_Original,*/
-    Status AS Stage_Original,
+    Rating AS Stage_Original,
+    /*Status AS Stage_Original,*/
     CAST(NULL as string) AS Deal_Description,
     CAST(NULL as string) As Amount,
     CAST(NULL as string) AS Deal_Created_Date,
