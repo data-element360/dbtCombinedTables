@@ -16,4 +16,4 @@ SELECT
     utm_medium AS UTM_Medium,
     utm_campaign AS UTM_Campaign,
     utm_content AS UTM_Content 
-FROM {{source('gravityformTables','balsampreserveformvibe')}}
+FROM {{source('gravityformTables','balsampreserveformvibe')}} 

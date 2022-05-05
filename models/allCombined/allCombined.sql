@@ -5,13 +5,14 @@ set clientList = [        "otf",
                           "ewp",
                           "12ridges",
                           "tamarack",
+                          "balsam",
+                          "kiama" 
       
 
                 ]        
 %}   
 
-/*                          "balsam",
-                          "kiama" */
+
 
 
     WITH allCombined as(
@@ -83,11 +84,11 @@ set clientList = [        "otf",
         ON crm.CRM_Email=gravityForm.GF_Email), --gravityForm.Email = crm.CRM_Email
 
         gravityCRMGACombined AS (SELECT * FROM gravityCRMCombined LEFT JOIN googleAnalytics ON 
-            SAFE_CAST(gravityCRMCombined.gaClientId AS FLOAT64) = SAFE_CAST(googleAnalytics.clientID AS FLOAT64)),
+            SAFE_CAST(gravityCRMCombined.gaClientId AS FLOAT64) = SAFE_CAST(googleAnalytics.clientID AS FLOAT64))
             
             -- The following is to make sure that no sessionCount etc. is null. Where a field is null, we take the average of that  
             -- field for that client
-        finalClientCombined AS (SELECT * EXCEPT(sessionCount, pageviews, sessionDuration),
+        /*finalClientCombined AS (SELECT * EXCEPT(sessionCount, pageviews, sessionDuration),
                                         CASE 
                                             WHEN sessionCount IS NULL THEN (SELECT ROUND(AVG(sessionCount)) FROM gravityCRMGACombined)
                                             ELSE sessionCount
@@ -103,9 +104,9 @@ set clientList = [        "otf",
                                             ELSE pageviews
                                             END AS pageviews,
                 
-                                        FROM gravityCRMGACombined)
+                                        FROM gravityCRMGACombined) */
 
-        SELECT * EXCEPT(clientID) FROM  finalClientCombined --gravityCRMGACombined
+        SELECT * EXCEPT(clientID) FROM  gravityCRMGACombined --finalClientCombined 
        )
 
         {{"UNION ALL" if not loop.last }}
@@ -113,7 +114,7 @@ set clientList = [        "otf",
     {%- endfor %}
     )
 
-    SELECT * FROM allCombined WHERE Client IS NOT Null
+    SELECT * FROM allCombined WHERE Client IS NOT Null--WHERE Client = 'balsam' AND sessionDuration IS NOT NULL--IS NOT Null AND (sessionCount IS NULL OR sessionDuration IS NULL)
 
 
   
