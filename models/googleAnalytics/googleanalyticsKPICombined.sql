@@ -1,17 +1,33 @@
-{% 
-set gaDataSet = [
-                "googleAnalyticsLandmark",                   "googleAnalyticsOTF",                          "googleAnalyticsTalisker",                      
+/*                "googleAnalyticsLandmark",                   "googleAnalyticsOTF",                          "googleAnalyticsTalisker",                      
                 "googleAnalyticsETW_capeonkiaw",             "googleAnalyticsETW_theGadsen",                "googleAnalyticsETW_waterfrontDanielIsland",    
                 "googleAnalytics12Ridges",                   "googleAnalyticsTamarack",                      "googleAnalyticsKiama",
-                "googleAnalyticsBalsamMountain"      
+                "googleAnalyticsBalsamMountain" 
+*/
+
+
+{% 
+set gaDataSet = [
+                    "googleAnalyticsOTF"
                 ]        
 %}
 
 
+/*
+
+                "landmark",         ,          "talisker",         "ewp",          "ewp",          "ewp",
+                "12ridges",         "tamarack",     "kiama",            "balsam"     
+
+
+*/
+
+
+
+
 {% 
 set gaClient = [
-                "landmark",         "otf",          "talisker",         "ewp",          "ewp",          "ewp",
-                "12ridges",         "tamarack",     "kiama",            "balsam"                
+           
+                "otf"
+
                 ]        
 %}
 
@@ -25,7 +41,7 @@ WITH combined AS (
     
 
 
-
+    WITH combineMain AS (
     SELECT 
     "{{client}}" AS client,
     clientId, 
@@ -66,10 +82,26 @@ WITH combined AS (
         channelGrouping,
         region
         
-        FROM dataraw.{{dataSet}}.googleAnalytics_rep1 GROUP BY clientId, client, campaign, keyword, adContent, source, channelGrouping,region)
+        FROM dataraw.{{dataSet}}.main GROUP BY clientId, client, campaign, keyword, adContent, source, channelGrouping,region
+        
+        
+        ) GROUP BY clientId) 
 
 
-    GROUP BY clientId 
+    
+    SELECT * FROM combineMain AS main
+    
+    LEFT JOIN
+
+     (SELECT *
+     FROM dataraw.{{dataSet}}.additionalDimensionsToBeJoined) AS additional
+
+    ON main.clientId = additional.clientId AND main.date = additional.date
+
+    
+
+    
+
 
  
 
@@ -83,3 +115,6 @@ WITH combined AS (
 
 
 SELECT * FROM combined
+
+
+
