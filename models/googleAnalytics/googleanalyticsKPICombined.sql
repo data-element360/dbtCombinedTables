@@ -93,10 +93,10 @@ WITH combined AS (
     
     LEFT JOIN
 
-     (SELECT clientId AS adsClientId, date AS adsDate, deviceCategory, city, hostName, 
+     (SELECT clientId AS addClientId, date AS addDate, deviceCategory, city, hostName, 
      FROM dataraw.{{dataSet}}.additionalDimensionsToBeJoined) AS additional
 
-    ON main.clientId = additional.adsClientId AND main.date = additional.adsDate
+    ON main.clientId = additional.addClientId AND main.date = additional.addDate
 
     
 
