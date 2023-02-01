@@ -7,7 +7,9 @@
 
 {% 
 set gaDataSet = [
-                    "googleAnalyticsOTF"
+                    "googleAnalyticsOTF",                    "googleAnalyticsTalisker",                     "googleAnalyticsETW_capeonkiaw",
+
+                    "googleAnalyticsETW_theGadsen",
                 ]        
 %}
 
@@ -26,7 +28,9 @@ set gaDataSet = [
 {% 
 set gaClient = [
            
-                "otf"
+                "otf",          "talisker",                   "ewp",     
+
+                "ewp",         
 
                 ]        
 %}
