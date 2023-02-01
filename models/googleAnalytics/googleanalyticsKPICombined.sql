@@ -9,7 +9,7 @@
 set gaDataSet = [
                     "googleAnalyticsOTF",                    "googleAnalyticsTalisker",                     "googleAnalyticsETW_capeonkiaw",
 
-                    "googleAnalyticsETW_theGadsen",
+                    "googleAnalyticsETW_theGadsen",         "googleAnalyticsTamarack"
                 ]        
 %}
 
@@ -30,7 +30,7 @@ set gaClient = [
            
                 "otf",          "talisker",                   "ewp",     
 
-                "ewp",         
+                "ewp",         "tamarack"
 
                 ]        
 %}
