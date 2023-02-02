@@ -47,11 +47,11 @@ WITH googleAds AS (
 
     SELECT 
     "{{client}}" AS client, *
-    --SUM(CAST(impressions AS INT64)) AS impressions
+    
 
     FROM dataraw.{{dataSet}}.googleAds
     WHERE queryRunTime = (SELECT MAX(queryRunTime) FROM dataraw.{{dataSet}}.googleAds) 
-    --GROUP BY client
+    
 
 {{"UNION ALL" if not loop.last }}
 
