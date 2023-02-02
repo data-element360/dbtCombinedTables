@@ -123,7 +123,7 @@ WITH combined AS (
 )
 
 
-SELECT * FROM combined 
+SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS Branded FROM combined 
 
 
 
