@@ -42,19 +42,36 @@ WITH googleAds AS (
 
 
     SELECT 
-    "{{client}}" AS client,
-    SUM(CAST(impressions AS INT64)) AS impressions
+    "{{client}}" AS client, *
+    --SUM(CAST(impressions AS INT64)) AS impressions
 
     FROM dataraw.{{dataSet}}.googleAds
     WHERE queryRunTime = (SELECT MAX(queryRunTime) FROM dataraw.{{dataSet}}.googleAds) 
-    GROUP BY client
+    --GROUP BY client
 
 {{"UNION ALL" if not loop.last }}
 
 {%- endfor %}
 
 
+),
+
+
+
+needsBranded AS 
+
+(
+SELECT * FROM googleAds AS ads
+
+LEFT JOIN
+
+(SELECT Campaign, CAST(Campaign_ID AS STRING) AS Campaign_ID  FROM dataraw.ElementInsights_External.GADS_accounts_and_campaign_ID) AS GADS  
+
+ON adwordsCampaignID = Campaign_ID 
 )
 
 
-SELECT * FROM googleAds
+
+SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(Campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded FROM needsBranded
+
+

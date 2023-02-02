@@ -1,0 +1,1 @@
+SELECT * FROM dataraw.ElementInsights_External.GADS_accounts_and_campaign_ID
