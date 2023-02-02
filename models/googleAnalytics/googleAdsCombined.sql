@@ -6,9 +6,13 @@
 
 
 {% 
-set gaDataSet = [
-                    "googleAnalyticsOTF",                   "googleAnalyticsTalisker",                      "googleAnalyticsETW_capeonkiaw"      
-                ]        
+set gaDataSet =  [
+                    "googleAnalyticsOTF",                "googleAnalyticsTalisker",                          "googleAnalyticsETW_capeonkiaw",
+
+                    "googleAnalyticsETW_theGadsen",         "googleAnalyticsTamarack",                       "googleAnalyticsETW_waterfrontDanielIsland",
+
+                    "googleAnalytics12Ridges",
+                ]          
 %}
 
 
@@ -26,8 +30,8 @@ set gaDataSet = [
 {% 
 set gaClient = [
            
-                "otf",                  "talisker",                         "ewp"
-
+                "otf",                  "talisker",                "ewp",           "ewp",             "tamarack",
+                "ewp",                  "12ridges",
                 ]        
 %}
 
@@ -42,19 +46,36 @@ WITH googleAds AS (
 
 
     SELECT 
-    "{{client}}" AS client,
-    SUM(CAST(impressions AS INT64)) AS impressions
+    "{{client}}" AS client, *
+    
 
     FROM dataraw.{{dataSet}}.googleAds
     WHERE queryRunTime = (SELECT MAX(queryRunTime) FROM dataraw.{{dataSet}}.googleAds) 
-    GROUP BY client
+    
 
 {{"UNION ALL" if not loop.last }}
 
 {%- endfor %}
 
 
+),
+
+
+
+needsBranded AS 
+
+(
+SELECT * FROM googleAds AS ads
+
+LEFT JOIN
+
+(SELECT Campaign, CAST(Campaign_ID AS STRING) AS Campaign_ID  FROM dataraw.ElementInsights_External.GADS_accounts_and_campaign_ID) AS GADS  
+
+ON adwordsCampaignID = Campaign_ID 
 )
 
 
-SELECT * FROM googleAds
+
+SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(Campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded FROM needsBranded
+
+
