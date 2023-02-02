@@ -7,11 +7,18 @@
 
 {% 
 set gaDataSet = [
-                    "googleAnalyticsOTF",                    "googleAnalyticsTalisker",                     "googleAnalyticsETW_capeonkiaw",
+                    "googleAnalyticsOTF",                "googleAnalyticsTalisker",                          "googleAnalyticsETW_capeonkiaw",
 
-                    "googleAnalyticsETW_theGadsen",         "googleAnalyticsTamarack"
+                    "googleAnalyticsETW_theGadsen",         "googleAnalyticsTamarack",                       "googleAnalyticsETW_waterfrontDanielIsland",
+
+                    "googleAnalytics12Ridges",
                 ]        
 %}
+
+                   /* "googleAnalyticsTalisker",                     "googleAnalyticsETW_capeonkiaw",
+
+                    "googleAnalyticsETW_theGadsen",         "googleAnalyticsTamarack" */
+
 
 
 /*
@@ -28,13 +35,10 @@ set gaDataSet = [
 {% 
 set gaClient = [
            
-                "otf",          "talisker",                   "ewp",     
-
-                "ewp",         "tamarack"
-
+                "otf",                  "talisker",                "ewp",           "ewp",             "tamarack",
+                "ewp",                  "12ridges",
                 ]        
 %}
-
 
 
 WITH combined AS (
@@ -44,7 +48,7 @@ WITH combined AS (
     {% set client = gaClient[loop.index-1] %}
     
 
-
+    (
     WITH combineMain AS (
     SELECT 
     "{{client}}" AS client,
@@ -101,6 +105,7 @@ WITH combined AS (
      FROM dataraw.{{dataSet}}.additionalDimensionsToBeJoined) AS additional
 
     ON main.clientId = additional.addClientId AND main.date = additional.addDate
+    )
 
     
 
@@ -118,7 +123,7 @@ WITH combined AS (
 )
 
 
-SELECT * FROM combined
+SELECT * FROM combined 
 
 
 
