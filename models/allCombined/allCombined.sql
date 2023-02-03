@@ -114,7 +114,7 @@ set clientList = [        "otf",
     {%- endfor %}
     )
 
-    SELECT * FROM allCombined WHERE Client IS NOT Null--WHERE Client = 'balsam' AND sessionDuration IS NOT NULL--IS NOT Null AND (sessionCount IS NULL OR sessionDuration IS NULL)
+    SELECT DISTINCT * FROM allCombined WHERE Client IS NOT Null
 
 
   
