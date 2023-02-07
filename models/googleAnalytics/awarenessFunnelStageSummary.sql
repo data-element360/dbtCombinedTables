@@ -1,7 +1,7 @@
 SELECT * EXCEPT( adsClient, adsBranded) FROM
 
 (SELECT client, branded, SUM(sessionCount) AS sumSessionCount, SUM(pageviews) AS sumPageViews, SUM(sessionDuration) AS sumsessionDuration 
-FROM `dataproduction.combinedTables.googleanalyticsKPICombined` 
+FROM (SELECT DISTINCT client, branded, clientId, sessionCount, pageviews, sessionDuration, campaign, keyword, adContent, source FROM `dataproduction.combinedTables.googleanalyticsKPICombined`) 
 GROUP BY client, branded) analytics
 
 LEFT JOIN
