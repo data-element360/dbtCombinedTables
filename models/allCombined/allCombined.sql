@@ -24,7 +24,7 @@ set clientList = [        "otf",
 
             -- The following is to eliminate duplicate Gravity Forms so that duplicate crm deals are not created. Basicall, we take the Gravity form with a 
             -- GaClid and combine the data.
-            SELECT * FROM (
+            SELECT regexp_extract(CAST(gaClientId AS STRING), '[^.]*') AS gfIntClientId, * FROM (
 
                 SELECT 
                     MAX(client) AS Client,    
@@ -35,6 +35,7 @@ set clientList = [        "otf",
                     MAX(Home_Description) AS GF_Home_Description,
                     MAX(date_created) AS GF_Date_Created,
                     MAX(CASE WHEN gaSeqNum=1 THEN gaClientId END) as gaClientId,
+                    
                 FROM 
                 (
                 SELECT gaClientId,
@@ -77,14 +78,16 @@ set clientList = [        "otf",
             WHERE client = "{{client}}" AND Contact_Type NOT IN ('Broker/Agent') -- Prevents Agents in Landmark CRM from loading
         ),
 
-        googleAnalytics AS (SELECT * EXCEPT(client) FROM combinedTables.googleanalyticsKPICombined WHERE client = "{{client}}"),
+        googleAnalytics AS (SELECT regexp_extract(clientId, '[^.]*') AS gaIntClientId, * EXCEPT(client) FROM (SELECT DISTINCT client, branded, clientId, sessionCount, pageviews, sessionDuration, campaign, keyword, adContent, source 
+        FROM `combinedTables.googleanalyticsKPICombined` WHERE client = "{{client}}")),
 
         gravityCRMCombined AS (SELECT * FROM gravityForm 
         RIGHT JOIN crm
         ON crm.CRM_Email=gravityForm.GF_Email), --gravityForm.Email = crm.CRM_Email
 
         gravityCRMGACombined AS (SELECT * FROM gravityCRMCombined LEFT JOIN googleAnalytics ON 
-            SAFE_CAST(gravityCRMCombined.gaClientId AS FLOAT64) = SAFE_CAST(googleAnalytics.clientID AS FLOAT64))
+            /*SAFE_CAST(gravityCRMCombined.gaClientId AS FLOAT64) = SAFE_CAST(googleAnalytics.clientID AS FLOAT64))*/
+            gfIntClientId = gaIntClientId)
             
             -- The following is to make sure that no sessionCount etc. is null. Where a field is null, we take the average of that  
             -- field for that client
@@ -114,7 +117,7 @@ set clientList = [        "otf",
     {%- endfor %}
     )
 
-    SELECT DISTINCT * FROM allCombined WHERE Client IS NOT Null
+    SELECT   DISTINCT * FROM allCombined WHERE Client IS NOT Null ORDER BY CRM_Email
 
 
   
