@@ -78,7 +78,9 @@ set clientList = [        "otf",
             WHERE client = "{{client}}" AND Contact_Type NOT IN ('Broker/Agent') -- Prevents Agents in Landmark CRM from loading
         ),
 
-        googleAnalytics AS (SELECT regexp_extract(clientId, '[^.]*') AS gaIntClientId, * EXCEPT(client) FROM (SELECT DISTINCT client, branded, clientId, sessionCount, pageviews, sessionDuration, campaign, keyword, adContent, source 
+        googleAnalytics AS (SELECT regexp_extract(clientId, '[^.]*') AS gaIntClientId, * EXCEPT(client) 
+        FROM (SELECT DISTINCT client, branded, clientId, sessionCount, pageviews, sessionDuration, campaign, keyword, adContent, source, channelGrouping,
+        region, city, deviceCategory
         FROM `combinedTables.googleanalyticsKPICombined` WHERE client = "{{client}}")),
 
         gravityCRMCombined AS (SELECT * FROM gravityForm 

@@ -69,7 +69,7 @@ SELECT * FROM googleAds AS ads
 
 LEFT JOIN
 
-(SELECT Campaign, CAST(Campaign_ID AS STRING) AS Campaign_ID  FROM dataraw.ElementInsights_External.GADS_accounts_and_campaign_ID) AS GADS  
+(SELECT Campaign, CAST(Campaign_ID AS STRING) AS Campaign_ID  FROM dataproduction.Element_Insight_Variables.GADS_accounts_and_campaign_ID) AS GADS  
 
 ON adwordsCampaignID = Campaign_ID 
 )
