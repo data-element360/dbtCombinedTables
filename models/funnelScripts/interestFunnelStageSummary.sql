@@ -1,4 +1,4 @@
-SELECT gfClient, branded, COUNT(*) AS gfCount, SUM(pageviews) AS sumPageViews, SUM(sessionDuration) AS sumSessionDuration FROM
+SELECT gfClient, branded, CAST(COUNT(*) AS NUMERIC) AS gfCount, SUM(pageviews) AS sumPageViews, SUM(sessionDuration) AS sumSessionDuration FROM
 
 (SELECT regexp_extract(CAST(gaClientId AS STRING), '[^.]*') AS gfIntClientId, client as gfClient, * FROM 
 
