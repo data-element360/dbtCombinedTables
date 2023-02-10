@@ -1,8 +1,10 @@
-SELECT googleAnalytics.client AS Client, googleAnalytics.branded AS Branded, channelGrouping AS Channel, SUM(totalGA) AS numGA, 
+SELECT googleAnalytics.client AS Client, googleAnalytics.branded AS Branded, channelGrouping AS Channel, CAST(SUM(totalGA) AS NUMERIC) AS numGA, 
+CAST(
 CASE 
   WHEN SUM(gfCount) IS NULL THEN 0
   ELSE SUM(gfCount)
-  END  AS numGF,
+  END
+   AS NUMERIC)  AS numGF,
  
 
 FROM
