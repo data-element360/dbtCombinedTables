@@ -1,4 +1,4 @@
-SELECT googleAnalytics.client AS Client, googleAnalytics.branded AS Branded, hostName AS Landing_Page, CAST(SUM(totalGA) AS NUMERIC)) AS numGA, 
+SELECT googleAnalytics.client AS Client, googleAnalytics.branded AS Branded, hostName AS Landing_Page, CAST(SUM(totalGA) AS NUMERIC) AS numGA, 
 CAST(
 CASE 
   WHEN SUM(gfCount) IS NULL THEN 0
