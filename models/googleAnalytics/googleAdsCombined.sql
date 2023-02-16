@@ -11,7 +11,9 @@ set gaDataSet =  [
 
                     "googleAnalyticsETW_theGadsen",         "googleAnalyticsTamarack",                       "googleAnalyticsETW_waterfrontDanielIsland",
 
-                    "googleAnalytics12Ridges",              "googleAnalyticsMountainAir"
+                    "googleAnalytics12Ridges",              "googleAnalyticsMountainAir",                   "googleAnalyticsBrightsCreek",
+
+                    "googleAnalyticsIslandSky"
                 ]          
 %}
 
@@ -31,7 +33,7 @@ set gaDataSet =  [
 set gaClient = [
            
                 "otf",                  "talisker",                "ewp",           "ewp",             "tamarack",
-                "ewp",                  "12ridges",                 "mountainair"
+                "ewp",                  "12ridges",                 "mountainair",     "brightscreek",  "islandsky"
                 ]        
 %}
 

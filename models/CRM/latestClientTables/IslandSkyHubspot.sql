@@ -76,7 +76,7 @@ SELECT
     phone As Phone,
     hs_object_id AS contactId,
     hs_all_team_ids
-    FROM `dataraw.hubspot12Ridges.{{contact_table}}` WHERE hs_all_team_ids LIKE '%2792719%'
+    FROM `dataraw.hubspot12Ridges.{{contact_table}}` WHERE hs_all_team_ids LIKE '%10198224%'
 ),
 hubspotDeals AS (
 
@@ -122,7 +122,6 @@ allUnion AS (SELECT * FROM contactUnionDealId
 LEFT JOIN hubspotDeals ON
 contactUnionDealId.dealId = hubspotDeals.hs_object_id)
 
-SELECT "12ridges" AS client, * EXCEPT(hs_object_id, hs_all_team_ids) FROM allUnion
+SELECT "islandsky" AS client, * EXCEPT(hs_object_id, hs_all_team_ids) FROM allUnion
 --SELECT Stage_Original, COUNT(Stage_Original) FROM allUnion WHERE Stage_Original ='Introduction Completed' Group By Stage_Original
---SELECT DISTINCT hs_all_team_ids FROM allUnion
-
+--SELECT COUNT(*) FROM allUnion
