@@ -122,9 +122,9 @@ set clientList = [        "otf",
     {%- endfor %}
     )
 
-    --SELECT   DISTINCT * FROM allCombined WHERE Client IS NOT Null ORDER BY CRM_Email
+    SELECT   DISTINCT * FROM allCombined WHERE Client IS NOT Null ORDER BY CRM_Email
 
-    SELECT   DISTINCT Client FROM allCombined
+    --SELECT   DISTINCT Client FROM allCombined
 
 
   
