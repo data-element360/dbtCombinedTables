@@ -7,7 +7,9 @@ set clientList = [        "otf",
                           "tamarack",
                           "balsam",
                           "kiama",
-                          "mountainair" 
+                          "mountainair",
+                          "brightscreek",
+                          "islandsky"
       
 
                 ]        
@@ -120,7 +122,9 @@ set clientList = [        "otf",
     {%- endfor %}
     )
 
-    SELECT   DISTINCT * FROM allCombined WHERE Client IS NOT Null ORDER BY CRM_Email
+    --SELECT   DISTINCT * FROM allCombined WHERE Client IS NOT Null ORDER BY CRM_Email
+
+    SELECT   DISTINCT Client FROM allCombined
 
 
   

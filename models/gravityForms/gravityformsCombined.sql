@@ -11,7 +11,7 @@ set gfAccounts = [
     "taliskercougarmoon",               "ewpwaterfront",                        "ewpcapeonkiawah",                     
     "ewpgadsden",                       "12ridgesliving",                       "homesattamarack",                      
     "kiamabahama",                      "balsammountain",                        "balsampreserveformvibe",
-    "onlyatmountainair"                   
+    "onlyatmountainair",                "discoverbrightscreek",                 "islandskystjohnliving"                   
            
     ] 
         
