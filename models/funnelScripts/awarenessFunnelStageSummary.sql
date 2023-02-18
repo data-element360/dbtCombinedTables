@@ -6,7 +6,7 @@ GROUP BY client, branded) analytics
 
 LEFT JOIN
 
-(SELECT client AS adsClient, branded AS adsBranded,  SUM(CAST(impressions AS NUMERIC)) AS sumImpressions 
+(SELECT client AS adsClient, branded AS adsBranded,  IFNULL(SUM(SAFE_CAST(impressions AS NUMERIC)),0) AS sumImpressions 
 
 FROM `dataproduction.combinedTables.googleAdsCombined` WHERE DATE(queryRunTime) = (SELECT MAX(DATE(queryRunTime)) FROM `dataproduction.combinedTables.googleAdsCombined`) GROUP BY client, branded) ads
 
