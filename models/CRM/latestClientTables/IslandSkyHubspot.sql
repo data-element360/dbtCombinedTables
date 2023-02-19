@@ -93,7 +93,7 @@ SELECT
 FROM (
     (SELECT CONCAT(pipeline,dealstage) AS stageConcat, * FROM `dataraw.hubspot12Ridges.{{deal_table}}`) Deals
     LEFT JOIN 
-    (SELECT CONCAT(pipeline,stageId) AS stageConcat, * FROM `dataraw.hubspot12Ridges.12ridges_pipeline` WHERE pipelineLabel = '12 Ridges - New') Pipeline  
+    (SELECT CONCAT(pipeline,stageId) AS stageConcat, * FROM `dataraw.hubspot12Ridges.12ridges_pipeline` WHERE pipelineLabel = 'Island Sky - St. John Founders') Pipeline  
     ON  Deals.stageConcat = Pipeline.stageConcat
     
     )
