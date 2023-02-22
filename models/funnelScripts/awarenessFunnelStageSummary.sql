@@ -13,7 +13,7 @@ GROUP BY client, branded) ads
 
 ON analytics.client = ads.adsClient AND analytics.branded = ads.adsBranded
 
-WHERE client != "islandsky"
+--WHERE client != "islandsky"
 
 
 
