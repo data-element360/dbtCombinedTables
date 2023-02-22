@@ -43,7 +43,7 @@ SELECT
         ELSE contacttypeid
         END AS Contact_Type,
     --contacttypeid As Contact_Type,
-    --phone As Phone,
+    CAST(NULL AS string) As Phone,
 
     CAST(NULL as string) AS contactId,
     CAST(NULL as string) AS dealId,--n
