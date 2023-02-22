@@ -5,7 +5,7 @@ set crmTables = [
     "landmarkHubspot",              "otfClubEssentials",            "taliskerBrightdoor",
     "ewpSFDC",                      "12ridgesHubspot",              "tamarackLasso",
     "kiamaHubspot",                 "balsamSharpspring",            "mountainairBrightdoor",
-    "brightscreekHubspot",          "IslandSkyHubspot"
+    "brightscreekHubspot",          "IslandSkyHubspot",             "springislandBrightdoor"
 ]
        
 %}
