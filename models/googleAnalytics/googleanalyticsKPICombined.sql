@@ -99,7 +99,7 @@ WITH combined AS (
 
 
     
-    SELECT * FROM combineMain AS main
+    SELECT * FROM combineMain AS main 
     
     LEFT JOIN
 
@@ -108,6 +108,7 @@ WITH combined AS (
 
     ON main.clientId = additional.addClientId AND main.date = additional.addDate
     )
+    
 
     
 
@@ -125,7 +126,9 @@ WITH combined AS (
 )
 
 
-SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded FROM combined 
+SELECT client, *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded 
+FROM combined 
+
 
 
 

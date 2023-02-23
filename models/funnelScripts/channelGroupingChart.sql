@@ -1,4 +1,4 @@
-SELECT googleAnalytics.client AS Client, googleAnalytics.branded AS Branded, channelGrouping AS Channel, CAST(SUM(totalGA) AS NUMERIC) AS numGA, 
+SELECT googleAnalytics.client AS Client, googleAnalytics.branded AS Branded, channelGrouping AS Channel, CAST(SUM(sumSessions) AS NUMERIC) AS sumSessions, 
 CAST(
 CASE 
   WHEN SUM(gfCount) IS NULL THEN 0
@@ -9,7 +9,7 @@ CASE
 
 FROM
 
-(SELECT client, branded, regexp_extract(CAST(clientId AS STRING), '[^.]*') AS clientId, channelGrouping, COUNT(*) AS totalGA 
+(SELECT client, branded, regexp_extract(CAST(clientId AS STRING), '[^.]*') AS clientId, channelGrouping, SUM(sessionCount) AS sumSessions
 FROM 
 (SELECT DISTINCT client, branded, clientId, sessionCount, pageviews, sessionDuration, campaign, keyword, adContent, source, channelGrouping,
         region, city, deviceCategory FROM `dataproduction.combinedTables.googleanalyticsKPICombined` )
