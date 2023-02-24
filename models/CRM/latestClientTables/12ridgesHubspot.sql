@@ -122,7 +122,7 @@ allUnion AS (SELECT * FROM contactUnionDealId
 LEFT JOIN hubspotDeals ON
 contactUnionDealId.dealId = hubspotDeals.hs_object_id)
 
-SELECT "12ridges" AS client, * EXCEPT(hs_object_id, hs_all_team_ids) FROM allUnion
+--SELECT "12ridges" AS client, * EXCEPT(hs_object_id, hs_all_team_ids) FROM allUnion
 --SELECT Stage_Original, COUNT(Stage_Original) FROM allUnion WHERE Stage_Original ='Introduction Completed' Group By Stage_Original
 --SELECT DISTINCT hs_all_team_ids FROM allUnion
-
+SELECT DISTINCT Stage_Original FROM allUnion

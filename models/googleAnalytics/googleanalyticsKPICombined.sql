@@ -12,7 +12,7 @@ set gaDataSet = [
                     "googleAnalyticsETW_theGadsen",         "googleAnalyticsTamarack",                       "googleAnalyticsETW_waterfrontDanielIsland",
 
                     "googleAnalytics12Ridges",          "googleAnalyticsMountainAir",                       "googleAnalyticsBrightsCreek",
-                    "googleAnalyticsIslandSky",         "googleAnalyticsSpringIsland"
+                    "googleAnalyticsIslandSky",         "googleAnalyticsSpringIsland",                      "googleAnalyticsKiama"
                 ]        
 %}
 
@@ -38,7 +38,7 @@ set gaClient = [
            
                 "otf",                  "talisker",                "ewp",           "ewp",             "tamarack",
                 "ewp",                  "12ridges",                "mountainair",   "brightscreek",     "islandsky",
-                "springisland"
+                "springisland",         "kiama"
                 ]        
 %}
 
@@ -127,7 +127,7 @@ WITH combined AS (
 
 
 SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded 
-FROM combined 
+FROM combined
 
 
 
