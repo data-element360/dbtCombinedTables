@@ -27,7 +27,7 @@ SELECT "{{crmTable}}" AS crmSystem, * FROM  {{ ref(crmTable) }}--dataproduction.
 
 )
 
-SELECT * FROM crmCompile where client = 'tamarack'
+SELECT * FROM crmCompile
 
 
 
