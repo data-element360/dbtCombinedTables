@@ -3,7 +3,7 @@ SELECT
     "tamarack" AS client,
     First_Name As First_Name,
     Last_Name As Last_Name,
-    Primary_Email AS Email,
+    Email AS Email,
     CAST(NULL AS DATE) AS Contact_Created_Date, --SAFE.
     CAST(NULL as string) AS GCLID,
     CAST(NULL AS DATE) AS Last_Modified_Date,
@@ -14,7 +14,7 @@ SELECT
     CAST(NULL AS STRING) AS contactId,
     CAST(NULL as string) AS dealId,
     CAST(NULL as string) AS Deal_Name,
-    Funnel_Stage AS Stage_Original,
+    Rating AS Stage_Original,
     /*Status AS Stage_Original,*/
     CAST(NULL as string) AS Deal_Description,
     CAST(NULL as string) As Amount,
@@ -24,4 +24,4 @@ SELECT
     CAST(NULL as string) AS Deal_Closed_Date
     
       
-FROM `dataraw.otfClubEssentials.OTF-ClubEssentials`
+FROM `dataraw.lassoTamarack.Tamarack-Lasso`
