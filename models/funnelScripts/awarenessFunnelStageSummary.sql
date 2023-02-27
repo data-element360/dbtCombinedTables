@@ -6,14 +6,15 @@ GROUP BY client, branded) analytics
 
 LEFT JOIN
 
-(SELECT client AS adsClient, branded AS adsBranded,  IFNULL(SUM(SAFE_CAST(impressions AS NUMERIC)),0) AS sumImpressions 
+(SELECT client AS adsClient, branded AS adsBranded,   IFNULL(SUM(SAFE_CAST(impressions AS NUMERIC)),0) AS sumImpressions --IFNULL(SUM(SAFE_CAST(impressions AS NUMERIC)),0)
 
 FROM `dataproduction.combinedTables.googleAdsCombined` WHERE DATE(queryRunTime) = (SELECT MAX(DATE(queryRunTime)) FROM `dataproduction.combinedTables.googleAdsCombined`) 
 GROUP BY client, branded) ads
 
 ON analytics.client = ads.adsClient AND analytics.branded = ads.adsBranded
 
---WHERE client != "islandsky"
+
+
 
 
 

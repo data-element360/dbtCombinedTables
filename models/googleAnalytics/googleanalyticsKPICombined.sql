@@ -128,6 +128,7 @@ WITH combined AS (
 
 SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded 
 FROM combined
+--WHERE client = 'kiama'
 
 
 

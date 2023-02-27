@@ -1,4 +1,5 @@
 SELECT 
+
     "otf" AS client,
     First_Name As First_Name,
     Last_Name As Last_Name,
@@ -13,7 +14,7 @@ SELECT
     CAST(NULL AS STRING) AS contactId,
     CAST(NULL as string) AS dealId,
     CAST(NULL as string) AS Deal_Name,
-    Funnel_Stage AS Stage_Original,
+    CONCAT(Funnel_Stage,' ',Opportunity_Status) AS Stage_Original,
     /*Status AS Stage_Original,*/
     CAST(NULL as string) AS Deal_Description,
     CAST(NULL as string) As Amount,
@@ -21,9 +22,11 @@ SELECT
     CAST(NULL as string) AS Deal_Probability,
     CAST(NULL as string) AS Deal_Closed_Reason,
     CAST(NULL as string) AS Deal_Closed_Date
+
     
       
 FROM `dataraw.otfClubEssentials.OTF-ClubEssentials`
+
 
 
 
