@@ -127,7 +127,7 @@ WITH combined AS (
 
 
 SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded 
-FROM combined
+FROM combined WHERE CAST(date AS NUMERIC) >= 20200101
 --WHERE client = 'kiama'
 
 
