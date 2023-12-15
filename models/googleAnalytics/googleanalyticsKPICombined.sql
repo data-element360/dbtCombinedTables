@@ -126,9 +126,10 @@ WITH combined AS (
 )
 
 
-SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded 
+SELECT *, (CASE WHEN REGEXP_CONTAINS(LOWER(campaign), 'branded') THEN "Branded" ELSE "Non-Branded" END) AS branded, 
+CAST(EXTRACT(YEAR FROM PARSE_DATE('%Y%m%d',date)) AS STRING) AS gaYear
 FROM combined WHERE CAST(date AS NUMERIC) >= 20200101
---WHERE client = 'kiama'
+
 
 
 
