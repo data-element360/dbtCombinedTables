@@ -12,7 +12,9 @@ set gfAccounts = [
     "ewpgadsden",                       "12ridgesliving",                       "homesattamarack",                      
     "kiamabahama",                      "balsammountain",                        "balsampreserveformvibe",
     "onlyatmountainair",                "discoverbrightscreek",                 "islandskystjohnliving",
-    "springislandhomesforsales"                   
+    "springislandhomesforsales",        "explorepointhope",                     "oceanclubliving",
+    "biltmoretheramblerealestate"
+                       
            
     ] 
         
@@ -87,7 +89,8 @@ SELECT * FROM gravityFormsCast  WHERE
  AND 
  NOT Email IN ('kirsten@element-360.com','amanda@element-360.com','bowman@element-360.com','ryan@element-360.com','researchbasedrealestate@gmail.com',
                 'researchbasedrealestate@gmail.com','element@360.com','nope.noperson12@gmail.com','geryamin2020@gmail.com','','wrbkelley46@gmail.com',
-                'bowman@element-360.com','ty@element-360.com','wrbkelley@gmail.com')
+                'bowman@element-360.com','ty@element-360.com','wrbkelley@gmail.com','wrbkelley@gmail.co','wrbkelley1000@gmail.com','wrbkelley6000@gmail.com',
+                'wrbkelley12@gmail.com', 'wrbkelley45@gmail.com' )
 
 	
 ),

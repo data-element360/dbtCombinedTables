@@ -1,42 +1,43 @@
 version: 2
 
 sources:
- - name: gravityformTables
-   database: dataraw
-   schema: gravityForms
+  - name: gravityformTables
+    database: dataraw
+    schema: gravityForms
 
-   tables:
-    - name: 12ridgesresidences
-    - name: 12ridgesliving
-    - name: frontlightatoldfield
-    - name: liveatbelfair
-    - name: livecarnescrossroads_form1
-    - name: livecarnescrossroads_form2
-    - name: mountainairclub
-    - name: realestateforsalewaxhawnc
-    - name: villageattamarack_form2
-    - name: villageattamarack_form3
-    - name: homesattamarack
-    - name: liveatlandmarkwhitefish_form1
-    - name: oldtoccoafarmdesign
-    - name: oldtoccoafarmgolf
-    - name: oldtoccoafarmliving
-    - name: taliskerdancingsun
-    - name: taliskere360
-    - name: taliskermoondance
-    - name: taliskermorningstar
-    - name: taliskerwhisperinghawk
-    - name: ewpwaterfront
-    - name: ewpcapeonkiawah
-    - name: ewpgadsen
-    - name: kiamabahama
-    - name: balsammountain
-    - name: balsampreserveformvibe
-    - name: taliskercougarmoon
-    - name: onlyatmountainair
-    - name: discoverbrightscreek
-    - name: islandskystjohnliving
-    - name: springislandhomesforsales
-
-    
-
+    tables:
+      - name: 12ridgesresidences
+      - name: 12ridgesliving
+      - name: frontlightatoldfield
+      - name: liveatbelfair
+      - name: livecarnescrossroads_form1
+      - name: livecarnescrossroads_form2
+      - name: mountainairclub
+      - name: realestateforsalewaxhawnc
+      - name: villageattamarack_form2
+      - name: villageattamarack_form3
+      - name: homesattamarack
+      - name: liveatlandmarkwhitefish_form1
+      - name: oldtoccoafarmdesign
+      - name: oldtoccoafarmgolf
+      - name: oldtoccoafarmliving
+      - name: taliskerdancingsun
+      - name: taliskere360
+      - name: taliskermoondance
+      - name: taliskermorningstar
+      - name: taliskerwhisperinghawk
+      - name: ewpwaterfront
+      - name: ewpcapeonkiawah
+      - name: ewpgadsen
+      - name: kiamabahama
+      - name: balsammountain
+      - name: balsampreserveformvibe
+      - name: taliskercougarmoon
+      - name: onlyatmountainair
+      - name: discoverbrightscreek
+      - name: islandskystjohnliving
+      - name: springislandhomesforsales
+      - name: explorepointhope
+      - name: oceanclubliving
+      - name: ramblebiltmoreforest 
+      - name: biltmoretheramblerealestate     
